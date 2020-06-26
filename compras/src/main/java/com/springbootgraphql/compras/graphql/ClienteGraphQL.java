@@ -1,24 +1,18 @@
-package com.springbootgraphql.compras;
+package com.springbootgraphql.compras.graphql;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.springbootgraphql.compras.Cliente;
+import com.springbootgraphql.compras.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class QueryGraphQL implements GraphQLQueryResolver {
+public class ClienteGraphQL implements GraphQLQueryResolver {
 
     @Autowired
     private ClienteRepository clienteRepository;
-
-    public String hello() {
-        return "Hello GraphQL";
-    }
-
-    public int soma(int a, int b) {
-        return a + b;
-    }
 
     public Cliente cliente(final Long id) {
         return clienteRepository.findById(id).orElse(null);
