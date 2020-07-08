@@ -33,4 +33,13 @@ public class ClienteGraphQL implements GraphQLQueryResolver, GraphQLMutationReso
         return clienteRepository.save(cliente);
     }
 
+    @Transactional
+    public Boolean deleteCliente(Long id) {
+        if (clienteRepository.findById(id).isPresent()){
+            clienteRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 }
