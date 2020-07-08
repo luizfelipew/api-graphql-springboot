@@ -1,4 +1,4 @@
-package com.springbootgraphql.compras;
+package com.springbootgraphql.compras.graphql;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

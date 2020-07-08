@@ -1,4 +1,4 @@
-package com.springbootgraphql.compras;
+package com.springbootgraphql.compras.graphql;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

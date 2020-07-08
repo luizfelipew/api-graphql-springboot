@@ -2,11 +2,8 @@ package com.springbootgraphql.compras.graphql;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.springbootgraphql.compras.Cliente;
-import com.springbootgraphql.compras.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,32 +11,26 @@ import java.util.List;
 public class ClienteGraphQL implements GraphQLQueryResolver, GraphQLMutationResolver {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteService clienteService;
 
     public Cliente cliente(final Long id) {
-        return clienteRepository.findById(id).orElse(null);
+        return clienteService.findById(id);
     }
 
     public List<Cliente> clientes() {
-        return clienteRepository.findAll();
+        return clienteService.findAll();
     }
 
-    @Transactional
     public Cliente saveCliente(final Long id, final String nome, final String email) {
         Cliente cliente = new Cliente();
         cliente.setId(id);
         cliente.setNome(nome);
         cliente.setEmail(email);
-        return clienteRepository.save(cliente);
+        return clienteService.save(cliente);
     }
 
-    @Transactional
     public Boolean deleteCliente(Long id) {
-        if (clienteRepository.findById(id).isPresent()){
-            clienteRepository.deleteById(id);
-            return true;
-        }
-        return false;
+        return clienteService.deleteById(id);
     }
 
 }
